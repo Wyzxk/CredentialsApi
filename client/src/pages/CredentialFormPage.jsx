@@ -53,19 +53,36 @@ export function CredentialFormPage() {
 
     navigate("/credentials");
   });
+
+  function deleteCredential() {
+    const confirm = window.confirm("Are you sure?");
+    if (confirm) {
+      deleteCredentials(params.id);
+      navigate("/credentials");
+      toast.success("Credential deleted", {
+        position: "bottom-right",
+        style: {
+          background: "#101020",
+          color: "white",
+        },
+      });
+    }
+  }
   return (
-    <div>
+    <div className="max-w-md mx-auto">
       <form onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Enter your name"
           {...register("name", { required: true })}
+          className="bg-slate-700 rounded-lg block w-full mb-3 p-2"
         />
         {errors.name && <span>Name is required</span>}
         <input
           type="text"
           placeholder="Enter your lastname"
           {...register("lastname", { required: true })}
+          className="bg-slate-700 rounded-lg block w-full mb-3 p-2"
         />
         {errors.lastname && <span>Lastname is required</span>}
 
@@ -73,6 +90,7 @@ export function CredentialFormPage() {
           type="number"
           placeholder="Enter your code"
           {...register("code", { required: true })}
+          className="bg-slate-700 rounded-lg block w-full mb-3 p-2"
         />
         {errors.age && <span>Age is required</span>}
 
@@ -80,6 +98,7 @@ export function CredentialFormPage() {
           type="text"
           placeholder="Enter your type of blood"
           {...register("blood", { required: true })}
+          className="bg-slate-700 rounded-lg block w-full mb-3 p-2"
         />
         {errors.blood && <span>Type blood is required</span>}
 
@@ -87,28 +106,19 @@ export function CredentialFormPage() {
           type="text"
           placeholder="Enter your degree"
           {...register("degree", { required: true })}
+          className="bg-slate-700 rounded-lg block w-full mb-3 p-2"
         />
         {errors.degree && <span>Degree is required</span>}
 
-        <button>Save</button>
+        <button className="bg-green-500 hover:bg-green-600 rounded-lg block w-full mb-3 p-2">
+          Save
+        </button>
       </form>
 
       {params.id && (
         <button
-          onClick={() => {
-            const confirm = window.confirm("Are you sure?");
-            if (confirm) {
-              deleteCredentials(params.id);
-              navigate("/credentials");
-              toast.success("Credential deleted", {
-                position: "bottom-right",
-                style: {
-                  background: "#101020",
-                  color: "white",
-                },
-              });
-            }
-          }}
+          className="bg-red-500 hover:bg-red-600 rounded-lg block w-full mb-3 p-2"
+          onClick={deleteCredential}
         >
           Delete
         </button>

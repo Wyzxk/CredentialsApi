@@ -6,7 +6,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { deleteCredentials } from "../api/credentials.api";
+
 export default function MediaCard({ name1, lastname1, degree1, id1 }) {
+  const params = useParams();
+  console.log(params.id);
   const navigate = useNavigate();
 
   return (
@@ -32,8 +37,9 @@ export default function MediaCard({ name1, lastname1, degree1, id1 }) {
           species, ranging across all continents except Antarctica
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: "center" }}>
         <Button
+          sx={{ backgroundColor: "#4CAF50", color: "white " }}
           onClick={() => {
             navigate(`/credentials/${id1}`);
           }}
@@ -41,7 +47,26 @@ export default function MediaCard({ name1, lastname1, degree1, id1 }) {
         >
           Edit
         </Button>
-        <Button size="small">Delete</Button>
+        <Button
+          sx={{ bgcolor: "#f44336", color: "white" }}
+          size="small"
+          onClick={() => {
+            const confirm = window.confirm("Are you sure?");
+            if (confirm) {
+              deleteCredentials(id1);
+              window.location.reload();
+              toast.success("Credential deleted", {
+                position: "bottom-right",
+                style: {
+                  background: "#101020",
+                  color: "white",
+                },
+              });
+            }
+          }}
+        >
+          Delete
+        </Button>
       </CardActions>
     </Card>
   );
