@@ -1,13 +1,19 @@
 import MediaCard from "./Card";
 
 export function CredentialCard({ credential }) {
+  // Send API credential objects to Card component
   return (
     <div>
       <MediaCard
-        name1={credential.name}
-        lastname1={credential.lastname}
-        degree1={credential.degree}
-        id1={credential.id}
+        nameCredential={credential.name}
+        lastnameCredential={credential.lastname}
+        degreeCredential={credential.degree}
+        idCredential={credential.id}
+        imageCredential={credential.image}
+        bloodCredential={credential.blood}
+        codeCredential={credential.code}
+        mailCredential={credential.mail}
+        phoneCredential={credential.phone}
       />
     </div>
   );

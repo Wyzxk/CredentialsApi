@@ -14,4 +14,7 @@ export const deleteCredentials = (id) => credentialApi.delete(`/${id}/`);
 
 export const setCredentials = (id,value) => credentialApi.put(`/${id}/`,value);
 
+export const patchCredentials = (id,f) => credentialApi.patch(`/${id}/`,f);
+
+
 
